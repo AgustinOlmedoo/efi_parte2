@@ -1,0 +1,127 @@
+{% extends "home/base.html" %} 
+{% block content %}
+{% load i18n %}
+<div class="container mt-5">
+    <div class="row justify-content-center"> <!-- Centra la fila -->
+        <!-- Tarjeta de botones de acción -->
+        <div class="col-md-3 mb-4">
+            {% if user.is_superuser or user.is_staff %}
+            <div class="card border-light rounded shadow-lg">
+                <div class="card-body bg-white">
+                    <div class="d-flex flex-column">
+                        <a href="{% url 'vehiculo_create' %}" class="btn btn-success mb-2 hover-effect rounded-pill"> {% trans "Nuevo vehículo" %}</a>
+                        <a href="{% url 'vehiculo_images' %}" class="btn btn-secondary mb-2 hover-effect rounded-pill"> {% trans "Agregar imagen a vehiculo existente" %}</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-effect {
+        transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .hover-effect:hover {
+        transform: scale(1.05); /* Aumenta ligeramente el tamaño del botón */
+    }
+
+    .btn-success:hover {
+        background-color: #28a745; /* Color de fondo al pasar el mouse */
+    }
+
+    .btn-info:hover {
+        background-color: #17a2b8; /* Color de fondo al pasar el mouse */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center"> <!-- Centra la fila -->
+        <!-- Contenedor principal -->
+        <div class="col-md-9">
+            <div class="bg-light p-4 rounded-lg shadow-lg">
+
+
+                <!-- Selector de marca -->
+                <div class="form-group mb-4">
+                    <select name="brand" id="brand-select" class="form-control" onchange="filterVehicles()">
+                        <option value="🎯 ">{% trans "Filtrar por Marca" %}</option>
+                        {% for marca in lista_marcas %}
+                            <option value="{{ marca.id }}" {% if marca.id == selected_brand_id %}selected{% endif %}>{{ marca.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Listado de vehículos en tarjetas -->
+                <div class="row">
+                    {% for vehiculo in vehicles %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm">
+                            <img src="{% if vehiculo.imagenes.exists and vehiculo.imagenes.first.image %}{{ vehiculo.imagenes.first.image.url }}{% else %}{{ default_image_url }}{% endif %}" class="card-img-top" alt="{{ vehiculo.modelo.name }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ vehiculo.marca.name }} {{ vehiculo.modelo.name }}</h5>
+                                <p class="card-text">
+                                    <strong>{% trans "Puertas:" %}</strong> {{ vehiculo.cant_puertas }}<br>
+                                    <strong>{% trans "Cilindrada:" %}</strong> {{ vehiculo.cilindrada }}<br>
+                                    <strong>{% trans "Combustible:" %}</strong> {{ vehiculo.combustible.name }}<br>
+                                    <strong>{% trans "País de Fabricación:" %}</strong> {{ vehiculo.pais_fabricacion.name }}<br>
+                                    <strong>{% trans "Precio (USD):" %}</strong> {{ vehiculo.precio_en_dolares|floatformat:2 }}
+                                </p>
+                                <div class="btn-group d-flex justify-content-between" role="group">
+                                    {% if user.is_superuser or user.is_staff %}
+                                    <a href="{% url 'vehiculo_update' vehiculo.id %}" class="btn btn-primary btn-sm"> {% trans "Editar" %}</a>
+                                    <a href="{% url 'vehiculo_delete' vehiculo.id %}" class="btn btn-danger btn-sm"> {% trans "Eliminar" %}</a>
+                                    {% endif %}
+                                    <a href="{% url 'comentario_lista' vehiculo.id %}" class="btn btn-secondary btn-sm"> {% trans "Comentarios" %}</a> 
+                                    <a href="{% url 'comentario_create' vehiculo.id %}" class="btn btn-secondary btn-sm"> {% trans "Comentar" %}</a> 
+                                    {% if vehiculo.imagenes.exists and vehiculo.imagenes.first.image %}
+                                        <button type="button" class="btn btn-success btn-sm" onclick="showImageModal('{{ vehiculo.imagenes.first.image.url }}')"> {% trans "Ver Imagen" %}</button>
+                                    {% else %}
+                                        {% if user.is_superuser or user.is_staff %}
+                                            <a href="{% url 'vehiculo_images' %}" type="button" class="btn btn-primary btn-sm" disabled> {% trans "Cargar imagen" %}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para mostrar la imagen -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">{% trans "Imagen del Vehículo" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="vehicleImage" src="" class="img-fluid" alt="{% trans 'Imagen del Vehículo' %}">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filterVehicles() {
+        var select = document.getElementById('brand-select');
+        var selectedBrandId = select.value;
+        var url = new URL(window.location.href);
+        url.searchParams.set('brand', selectedBrandId);
+        window.location.href = url.href;
+    }
+
+    function showImageModal(imageUrl) {
+        document.getElementById('vehicleImage').src = imageUrl;
+        var imageModal = new bootstrap.Modal(document.getElementById('imageModal'));
+        imageModal.show();
+    }
+</script>
+{% endblock %}

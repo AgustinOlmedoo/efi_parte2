@@ -1,0 +1,57 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card border-primary rounded-lg">
+                <div class="card-header bg-light border-bottom">
+                    <h4 class="card-title mb-0 text-primary">Comentar sobre {{ vehiculo.marca.name }} {{ vehiculo.modelo.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_contenido" class="form-label">Contenido</label>
+                            <textarea name="contenido" id="id_contenido" class="form-control" placeholder="Escriba su comentario aquí...">{% if form.contenido.value %}{{ form.contenido.value }}{% endif %}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Enviar</button>
+                        <a href="{% url 'comentario_lista' vehiculo.id %}" class="btn btn-secondary w-100 mt-2">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    .card {
+        border: 2px solid #070706;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .form-label {
+        font-weight: 600;
+        color: #495057;
+    }
+    .btn-success {
+        background-color: #070706;
+        border-color: #70706d;
+    }
+    .btn-success:hover {
+        background-color: #070706;
+        border-color: #70706d;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+</style>

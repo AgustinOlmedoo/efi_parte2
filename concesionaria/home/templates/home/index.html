@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    {% load static %}
+    {% load i18n %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body.index-page {
+            background-color: #121212;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+        .navbar {
+            background-color: #1a1a2e;
+        }
+        .navbar-brand {
+            color: #f8f9fa !important;
+            font-size: 1.8rem;
+        }
+        .nav-link {
+            color: #f8f9fa !important;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: #de28ba !important;
+        }
+        .banner {
+            position: relative;
+            text-align: center;
+            color: white;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .banner img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .banner .btn-banner {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 51, 51, 0.7);
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .banner .btn-banner:hover {
+            background-color: rgba(255, 51, 51, 0.9);
+        }
+    </style>
+</head>
+<body class="index-page">
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Luxury Cars</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'update_lang' %}" class="btn btn-secondary btn-sm mx-2"> 
+                        {% if profile.language == 'es' %} EN {% else %} ES {% endif %}
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">{% trans "Cerrar sesión" %}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">{% trans "Iniciar sesión" %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner con imagen y botón -->
+    <div class="banner">
+        <img src="../../static/home/images/WhatsApp-Image-2024-12-16-at-17.57.20-scaled.jpeg" alt="Banner">
+        <a href="../../../vehiculos" class="btn-banner">Explora nuestros autos</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

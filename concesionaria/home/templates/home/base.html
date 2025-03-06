@@ -1,0 +1,101 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Cars</title>
+
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="{% static 'home/css/styles.css' %}">
+    
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #1a1a2e;
+        }
+        .navbar-brand {
+            color: #f8f9fa !important;
+            font-size: 1.8rem;
+        }
+        .nav-link {
+            color: #f8f9fa !important;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .nav-link:hover {
+            color: #de28ba !important;
+        }
+        .content {
+            padding: 20px;
+        }
+        footer {
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
+        }
+        footer a {
+            color: #e945e6;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Luxury Cars</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'vehiculo_lista' %}">{% trans "Nuestros vehiculos" %}</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'update_lang' %}" class="btn btn-secondary btn-sm mx-3"> 
+                        {% if profile.language == 'es' %} EN {% else %} ES {% endif %}
+                    </a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">{% trans "Cerrar sesión" %}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">{% trans "Iniciar sesión" %}</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Luxury Cars. Todos los derechos reservados.</p>
+            <p class="mt-2">Olmedo's Group</p>
+        </div>
+    </footer>
+</body>
+</html>

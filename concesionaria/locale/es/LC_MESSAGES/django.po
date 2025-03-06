@@ -1,0 +1,172 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-05 01:36-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: concesionaria/settings.py:139
+msgid "English"
+msgstr "Inglés"
+
+#: concesionaria/settings.py:140
+msgid "Español"
+msgstr "Español"
+
+#: home/templates/home/base.html:71
+#, fuzzy
+#| msgid "vehiculo"
+msgid "Nuestros vehiculos"
+msgstr "vehículo"
+
+#: home/templates/home/base.html:78 home/templates/home/index.html:80
+msgid "Cerrar sesión"
+msgstr ""
+
+#: home/templates/home/base.html:82 home/templates/home/index.html:84
+msgid "Iniciar sesión"
+msgstr ""
+
+#: vehiculos/models.py:6 vehiculos/models.py:12 vehiculos/models.py:18
+#: vehiculos/models.py:24
+msgid "name"
+msgstr "nombre"
+
+#: vehiculos/models.py:35
+msgid "marca"
+msgstr "marca"
+
+#: vehiculos/models.py:42
+msgid "modelo"
+msgstr "modelo"
+
+#: vehiculos/models.py:46
+msgid "cant_puertas"
+msgstr "cantidad de puertas"
+
+#: vehiculos/models.py:50
+msgid "cilindrada"
+msgstr "cilindrada"
+
+#: vehiculos/models.py:57
+msgid "combustible"
+msgstr "combustible"
+
+#: vehiculos/models.py:64
+msgid "pais_fabricacion"
+msgstr "país de fabricación"
+
+#: vehiculos/models.py:68
+msgid "precio_en_dolares"
+msgstr "precio en dólares"
+
+#: vehiculos/models.py:78
+msgid "author"
+msgstr "autor"
+
+#: vehiculos/models.py:84 vehiculos/models.py:106
+msgid "vehiculo"
+msgstr "vehículo"
+
+#: vehiculos/models.py:87
+msgid "contenido"
+msgstr "contenido"
+
+#: vehiculos/models.py:91
+msgid "fecha_creacion"
+msgstr "fecha de creación"
+
+
+#: vehiculos/models.py:109
+msgid "image"
+msgstr "imagen"
+
+#: vehiculos/models.py:115
+msgid "ruta_imagen"
+msgstr "ruta de imagen"
+
+#: vehiculos/templates/vehiculos/list.html:12
+#, fuzzy
+#| msgid "vehiculo"
+msgid "Nuevo vehículo"
+msgstr "vehículo"
+
+#: vehiculos/templates/vehiculos/list.html:13
+msgid "Agregar imagen a vehiculo existente"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:50
+msgid "Filtrar por Marca"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:66
+#, fuzzy
+#| msgid "cant_puertas"
+msgid "Puertas:"
+msgstr "cantidad de puertas"
+
+#: vehiculos/templates/vehiculos/list.html:67
+#, fuzzy
+#| msgid "cilindrada"
+msgid "Cilindrada:"
+msgstr "cilindrada"
+
+#: vehiculos/templates/vehiculos/list.html:68
+#, fuzzy
+#| msgid "combustible"
+msgid "Combustible:"
+msgstr "combustible"
+
+#: vehiculos/templates/vehiculos/list.html:69
+msgid "País de Fabricación:"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:70
+msgid "Precio (USD):"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:74
+msgid "Editar"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:75
+msgid "Eliminar"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:77
+msgid "Comentarios"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:78
+msgid "Comentar"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:80
+msgid "Ver Imagen"
+msgstr ""
+
+#: vehiculos/templates/vehiculos/list.html:83
+#, fuzzy
+#| msgid "ruta_imagen"
+msgid "Cargar imagen"
+msgstr "ruta de imagen"
+
+#: vehiculos/templates/vehiculos/list.html:102
+#: vehiculos/templates/vehiculos/list.html:106
+#, fuzzy
+#| msgid "Inventario de Vehículos"
+msgid "Imagen del Vehículo"
+msgstr "Inventario de Vehículos"

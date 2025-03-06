@@ -6,12 +6,12 @@ Este documento incluye los pasos y comandos necesarios para configurar, instalar
 
 1. **Clona el repositorio en la ubicación que desees:**
     ```bash
-    git clone git@github.com:GeronimoTorresOrtiz/concesionariaLP.git
+    git clone git@github.com:AgustinOlmedoo/efi_parte2.git
     ```
 
 2. **Accede a la carpeta del proyecto:**
     ```bash
-    cd concesionariaLP
+    cd concesionaria_LuxuryCars
     ```
 
 3. **Crea un entorno virtual:**
