@@ -11,7 +11,7 @@ Este documento incluye los pasos y comandos necesarios para configurar, instalar
 
 2. **Accede a la carpeta del proyecto:**
     ```bash
-    cd concesionaria_LuxuryCars
+    cd concesionaria
     ```
 
 3. **Crea un entorno virtual:**
